@@ -1,0 +1,135 @@
+{
+ "level": "Starters",
+ "units": [
+  {
+   "unit": 1,
+   "title": "Colours",
+   "n": 15
+  },
+  {
+   "unit": 2,
+   "title": "Farm animals and pets",
+   "n": 15
+  },
+  {
+   "unit": 3,
+   "title": "Wild animals",
+   "n": 15
+  },
+  {
+   "unit": 4,
+   "title": "The body and the face",
+   "n": 15
+  },
+  {
+   "unit": 5,
+   "title": "Family",
+   "n": 12
+  },
+  {
+   "unit": 6,
+   "title": "People and feelings",
+   "n": 15
+  },
+  {
+   "unit": 7,
+   "title": "Clothes",
+   "n": 15
+  },
+  {
+   "unit": 8,
+   "title": "Toys",
+   "n": 15
+  },
+  {
+   "unit": 9,
+   "title": "Fruit and vegetables",
+   "n": 15
+  },
+  {
+   "unit": 10,
+   "title": "Meals",
+   "n": 15
+  },
+  {
+   "unit": 11,
+   "title": "Sweets and drinks",
+   "n": 15
+  },
+  {
+   "unit": 12,
+   "title": "The home",
+   "n": 15
+  },
+  {
+   "unit": 13,
+   "title": "Things in the home",
+   "n": 15
+  },
+  {
+   "unit": 14,
+   "title": "Music and my things",
+   "n": 15
+  },
+  {
+   "unit": 15,
+   "title": "School things",
+   "n": 15
+  },
+  {
+   "unit": 16,
+   "title": "At school",
+   "n": 15
+  },
+  {
+   "unit": 17,
+   "title": "In class",
+   "n": 15
+  },
+  {
+   "unit": 18,
+   "title": "Action words",
+   "n": 15
+  },
+  {
+   "unit": 19,
+   "title": "Sports",
+   "n": 15
+  },
+  {
+   "unit": 20,
+   "title": "Transport and places",
+   "n": 15
+  },
+  {
+   "unit": 21,
+   "title": "The world and time",
+   "n": 15
+  },
+  {
+   "unit": 22,
+   "title": "Numbers 1–20",
+   "n": 20
+  },
+  {
+   "unit": 23,
+   "title": "Describing words",
+   "n": 15
+  },
+  {
+   "unit": 24,
+   "title": "Where is it?",
+   "n": 15
+  },
+  {
+   "unit": 25,
+   "title": "More action words",
+   "n": 15
+  },
+  {
+   "unit": 26,
+   "title": "Hello and class words",
+   "n": 15
+  }
+ ]
+}
