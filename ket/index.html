@@ -138,7 +138,7 @@ button:focus-visible, a:focus-visible { outline: 3px solid var(--orange); outlin
     get(k, d) { try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; } catch (e) { return d; } },
     set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
   };
-  const known = u => store.get('known-u' + u, []);
+  const known = u => store.get('ket-known-u' + u, []);
   const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
   const pad = n => String(n).padStart(2, '0');
 
@@ -205,7 +205,7 @@ button:focus-visible, a:focus-visible { outline: 3px solid var(--orange); outlin
         }).join('')}
       </div>
       <div class="foot">Tap a unit to start · Chạm vào một bài để bắt đầu</div>`;
-    const last = app.querySelector(`.unit[data-u="${store.get('lastUnit', 0)}"]`);
+    const last = app.querySelector(`.unit[data-u="${store.get('ket-lastUnit', 0)}"]`);
     if (last) last.scrollIntoView({ block: 'center' }); else window.scrollTo(0, 0);
     app.querySelectorAll('.unit').forEach(el => el.onclick = () => { location.hash = 'u' + pad(el.dataset.u); });
   }
@@ -383,7 +383,7 @@ button:focus-visible, a:focus-visible { outline: 3px solid var(--orange); outlin
     function draw(shown) {
       if (i >= order.length) {
         order.forEach(k => { if (got.includes(k)) kn.add(U.words[k].en); else kn.delete(U.words[k].en); });
-        store.set('known-u' + U.unit, [...kn]);
+        store.set('ket-known-u' + U.unit, [...kn]);
         st.innerHTML = `<div class="card done"><div class="big">${got.length} / ${order.length}</div>
           <div>${miss.length === 0 ? 'You know them all! · Em thuộc hết rồi!' : 'Practise these again: · Luyện lại các từ này:'}</div>
           ${miss.length ? `<div class="row" style="gap:6px">${miss.map(k => `<span class="btn ghost" style="min-height:40px;font-size:16px">${esc(U.words[k].en)}</span>`).join('')}</div>` : ''}
@@ -422,7 +422,7 @@ button:focus-visible, a:focus-visible { outline: 3px solid var(--orange); outlin
     const m = /^u(\d\d)$/.exec(h);
     if (m && INDEX.units.some(x => x.unit === +m[1])) {
       const u = +m[1];
-      store.set('lastUnit', u);
+      store.set('ket-lastUnit', u);
       openUnit(u);
     } else home();
   }

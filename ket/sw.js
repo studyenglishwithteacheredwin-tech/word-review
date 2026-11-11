@@ -1,5 +1,5 @@
 // Offline cache: the app shell is cached on install; each unit is cached the first time it is opened.
-const CACHE = 'word-review-ket-v2';
+const CACHE = 'word-review-ket-v3';
 const SHELL = ['./', 'index.html', 'manifest.json', 'icon-192.png', 'icon-512.png', 'data/ket/index.json', 'data/ket/thumbs.json'];
 self.addEventListener('install', e => { e.waitUntil(caches.open(CACHE).then(c => c.addAll(SHELL)).then(() => self.skipWaiting())); });
 self.addEventListener('activate', e => {
