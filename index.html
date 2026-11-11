@@ -60,6 +60,15 @@ button:focus-visible, a:focus-visible { outline: 3px solid var(--orange); outlin
 .sound .k { color: var(--pink); font-size: 13px; font-weight: 700; }
 .sound .p { color: var(--pink); font-size: 22px; font-weight: 700; letter-spacing: .02em; }
 .sound .nm { color: var(--muted); font-size: 13px; margin-left: auto; }
+.sound .chips { display: flex; flex-wrap: wrap; gap: 8px; width: 100%; margin-top: 2px; }
+.sound .chip { display: flex; align-items: center; gap: 8px; background: #fff; border: 1.5px solid var(--pink); border-radius: 12px;
+  padding: 6px 10px; font: inherit; color: var(--ink, #231F20); cursor: pointer; }
+.sound .chip .l { color: var(--pink); font-size: 20px; font-weight: 700; }
+.sound .chip .w { font-size: 16px; font-weight: 600; }
+.sound .chip .w b { color: var(--pink); }
+.sound .chip.on { background: var(--pink); color: #fff; }
+.sound .chip.on .l, .sound .chip.on .w b { color: #fff; }
+.sound .hint { width: 100%; color: var(--muted); font-size: 12px; }
 .modes { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; margin-bottom: 12px; }
 .modes button { padding: 9px 4px; border-radius: 12px; background: var(--card); border: 1px solid var(--line); font-weight: 700; line-height: 1.1; }
 .modes button small { display: block; font-weight: 400; font-size: 11px; color: var(--muted); }
@@ -148,6 +157,56 @@ button:focus-visible, a:focus-visible { outline: 3px solid var(--orange); outlin
       if (p && p.catch) p.catch(() => res(false));
     });
   }
+  // ---------- sound of the week: each spelling + a word from this unit, tap to hear it ----------
+  function soundMatch(w, p, loose) {
+    const s = w.en.toLowerCase(), t = w.tricky;
+    if (/^[a-z]_e$/.test(p)) {   // magic e: the highlighted vowel, then one consonant, then e
+      const re = new RegExp(p[0] + '[^aeiou ]e', 'g'); let m;
+      while ((m = re.exec(s))) if (loose || (t && t[0] === m.index)) return [m.index, 1, m.index + 2];
+      return null;
+    }
+    if (/·$/.test(p)) return t && t[1] === 1 && s[t[0]] === p[0] ? [t[0], 1] : null;   // open syllable, e.g. o· in "open"
+    if (t && s.substr(t[0], t[1]) === p) return [t[0], p.length];
+    if (loose) { const i = s.indexOf(p); if (i >= 0) return [i, p.length]; }
+    return null;
+  }
+  function soundExamples() {
+    const used = new Set();
+    return U.sound.map(p => {
+      let best = null;
+      for (const pass of [0, 1]) {
+        for (const w of U.words) {
+          if (used.has(w.en)) continue;
+          const m = soundMatch(w, p, pass === 1);
+          if (m) { best = { w, m }; break; }
+        }
+        if (best) break;
+      }
+      if (best) used.add(best.w.en);
+      return { p, ex: best };
+    });
+  }
+  function hl(en, m) {
+    const parts = [[0, m[0], 0], [m[0], m[0] + m[1], 1]];
+    if (m[2] != null) parts.push([m[0] + m[1], m[2], 0], [m[2], m[2] + 1, 1], [m[2] + 1, en.length, 0]);
+    else parts.push([m[0] + m[1], en.length, 0]);
+    return parts.map(([a, b, on]) => on ? `<b>${esc(en.slice(a, b))}</b>` : esc(en.slice(a, b))).join('');
+  }
+  function soundBox() {
+    if (!U.sound || !U.sound.length) return '';
+    const ex = soundExamples();
+    const chips = ex.map((e, i) => e.ex
+      ? `<button class="chip" data-i="${i}" aria-label="Hear ${esc(e.ex.w.en)}"><span class="l">${esc(e.p.replace('_', '–').replace('·', ''))}</span><span class="w">${hl(e.ex.w.en, e.ex.m)}</span>🔊</button>`
+      : `<span class="chip"><span class="l">${esc(e.p.replace('_', '–').replace('·', ''))}</span></span>`).join('');
+    setTimeout(() => app.querySelectorAll('.sound .chip[data-i]').forEach(b => b.onclick = async () => {
+      const w = ex[+b.dataset.i].ex.w;
+      app.querySelectorAll('.sound .chip').forEach(x => x.classList.remove('on')); b.classList.add('on');
+      await play(w.slow || w.audio); b.classList.remove('on');
+    }));
+    return `<div class="sound"><span class="k">Sound of the week · Âm của tuần</span><span class="nm">${esc(U.sound_name)}</span>
+      <div class="chips">${chips}</div>
+      <span class="hint">Tap a word to hear the sound. Say it with the pink letters. · Chạm vào từ để nghe âm. Đọc to phần chữ màu hồng.</span></div>`;
+  }
   function stop() { try { if (player) player.pause(); } catch (e) {} }
 
   // ---------- data ----------
@@ -222,7 +281,7 @@ button:focus-visible, a:focus-visible { outline: 3px solid var(--orange); outlin
     window.scrollTo(0, 0);
     const k = known(U.unit).length;
     app.innerHTML = topBar(`Unit ${U.unit} · ${U.title}`, `★ ${k}/${U.words.length} known · đã thuộc`, true) + `
-      <div class="sound"><span class="k">Sound of the week</span><span class="p">${U.sound.map(esc).join('&nbsp;&nbsp;')}</span><span class="nm">${esc(U.sound_name)}</span></div>
+      ${soundBox()}
       <div class="modes" role="group" aria-label="Mode">
         <button data-m="learn" aria-pressed="${mode === 'learn'}">Learn<small>Học từ</small></button>
         <button data-m="listen" aria-pressed="${mode === 'listen'}">Listen<small>Nghe, chọn</small></button>
