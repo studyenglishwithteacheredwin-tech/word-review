@@ -1,0 +1,189 @@
+{
+ "level": "Flyers",
+ "books": [
+  {
+   "book": 1,
+   "units": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+   ]
+  },
+  {
+   "book": 2,
+   "units": [
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14
+   ]
+  },
+  {
+   "book": 3,
+   "units": [
+    15,
+    16,
+    17,
+    18,
+    19,
+    20
+   ]
+  },
+  {
+   "book": 4,
+   "units": [
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27
+   ]
+  }
+ ],
+ "units": [
+  {
+   "unit": 1,
+   "title": "Animals",
+   "n": 19
+  },
+  {
+   "unit": 2,
+   "title": "Body and health",
+   "n": 19
+  },
+  {
+   "unit": 3,
+   "title": "Things we wear",
+   "n": 19
+  },
+  {
+   "unit": 4,
+   "title": "Food",
+   "n": 19
+  },
+  {
+   "unit": 5,
+   "title": "At home",
+   "n": 19
+  },
+  {
+   "unit": 6,
+   "title": "Numbers and time",
+   "n": 19
+  },
+  {
+   "unit": 7,
+   "title": "Time words",
+   "n": 18
+  },
+  {
+   "unit": 8,
+   "title": "School and study",
+   "n": 19
+  },
+  {
+   "unit": 9,
+   "title": "Jobs",
+   "n": 19
+  },
+  {
+   "unit": 10,
+   "title": "In town",
+   "n": 19
+  },
+  {
+   "unit": 11,
+   "title": "Travel",
+   "n": 19
+  },
+  {
+   "unit": 12,
+   "title": "The world",
+   "n": 19
+  },
+  {
+   "unit": 13,
+   "title": "Weather and seasons",
+   "n": 15
+  },
+  {
+   "unit": 14,
+   "title": "Joining words",
+   "n": 14
+  },
+  {
+   "unit": 15,
+   "title": "Months",
+   "n": 15
+  },
+  {
+   "unit": 16,
+   "title": "Free time",
+   "n": 19
+  },
+  {
+   "unit": 17,
+   "title": "Music and shows",
+   "n": 15
+  },
+  {
+   "unit": 18,
+   "title": "Talking and sending",
+   "n": 15
+  },
+  {
+   "unit": 19,
+   "title": "Where and which way?",
+   "n": 15
+  },
+  {
+   "unit": 20,
+   "title": "Some, any, every",
+   "n": 19
+  },
+  {
+   "unit": 21,
+   "title": "What is it like?",
+   "n": 15
+  },
+  {
+   "unit": 22,
+   "title": "How do you feel?",
+   "n": 15
+  },
+  {
+   "unit": 23,
+   "title": "People",
+   "n": 19
+  },
+  {
+   "unit": 24,
+   "title": "Action words 1",
+   "n": 19
+  },
+  {
+   "unit": 25,
+   "title": "Action words 2",
+   "n": 19
+  },
+  {
+   "unit": 26,
+   "title": "Maybe and must",
+   "n": 19
+  },
+  {
+   "unit": 27,
+   "title": "Thinking words",
+   "n": 17
+  }
+ ]
+}

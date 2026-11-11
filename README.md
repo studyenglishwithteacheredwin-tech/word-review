@@ -6,3 +6,7 @@ Static web app: open index.html on any web host (GitHub Pages).
 - sw.js + manifest.json — offline cache and "Add to Home Screen".
 - export.py — rebuilds data/ from the Movers book kit + audio (run again after any word or picture change).
 To add Starters / Flyers / KET later: export to data/<level>/ and add a level picker.
+
+
+## Flyers
+flyers/ — Flyers Word Review app (27 units, 477 words). Live at /word-review/flyers/. Own service worker cache and progress keys.
