@@ -1,5 +1,5 @@
 // Offline cache: the app shell is cached on install; each unit is cached the first time it is opened.
-const CACHE = 'word-review-starters-v4';
+const CACHE = 'word-review-starters-v2';
 const SHELL = ['./', 'index.html', 'manifest.json', 'icon-192.png', 'icon-512.png', 'data/starters/index.json', 'data/starters/thumbs.json'];
 self.addEventListener('install', e => { e.waitUntil(caches.open(CACHE).then(c => c.addAll(SHELL)).then(() => self.skipWaiting())); });
 self.addEventListener('activate', e => {
@@ -14,7 +14,7 @@ self.addEventListener('fetch', e => {
     e.respondWith(caches.match(e.request).then(hit => hit || fetch(e.request).then(r => {
       const copy = r.clone(); if (r.ok) caches.open(CACHE).then(c => c.put(e.request, copy)); return r; })));
   } else {        // shell: network first, fall back to cache when offline
-    e.respondWith(fetch(e.request, { cache: 'no-cache' }).then(r => {
+    e.respondWith(fetch(e.request).then(r => {
       const copy = r.clone(); if (r.ok) caches.open(CACHE).then(c => c.put(e.request, copy)); return r;
     }).catch(() => caches.match(e.request)));
   }
